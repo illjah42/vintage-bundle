@@ -4,21 +4,22 @@ const gulp        = require('gulp');
 const browserSync = require('browser-sync').create();
 
 /**
- * Start browsersync server and watch for changes.
+ * Start browsersync server
  */
 gulp.task('livereload', () => {
-  // Start server
   browserSync.init({
     server: { baseDir: 'www' },
     reloadDebounce: 4,
     logPrefix: 'Vintage',
     notify: false
   });
-
-  // Initialize watcher
-  browserSync
-    .watch('./www/**/*.*')
-    .on('change', browserSync.reload);
 });
 
+/**
+ * Task for browser reloading
+ */
+gulp.task('reload-browsers', () => {
+  browserSync.reload();
+})
 
+module.exports = browserSync; // export for styles sreaming

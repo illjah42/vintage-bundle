@@ -54,7 +54,8 @@
     "gulp-util": "^3.0.7",<% if (!isPug) { %>
     "mustache": "^2.3.0",<% } %>
     "imports-loader": "^0.7.1",
-    "jscs": "^3.0.7",<% if (isPug) { %>
+    "jscs": "^3.0.7",
+    "on-build-webpack": "^0.1.0",<% if (isPug) { %>
     "pug": "^2.0.0-beta6",
     "pug-include-glob": "^0.3.3",<% } %>
     "require-dir": "^0.3.1",

@@ -27,7 +27,7 @@ gulp.task('template-compile', () => compileHtml(...mustachePaths));
  * Watch for changes in '.mustache' files and compile them.
  */
 gulp.task('template-watch', () => {
-  gulp.watch('src/template/**/*.mustache', () => runSequence('template-compile', 'json-compile'));
+  gulp.watch('src/template/**/*.mustache', () => runSequence('template-compile', 'json-compile', 'reload-browsers'));
 });
 
 /**
@@ -47,4 +47,3 @@ const compileHtml = (src, dest) => {
 
 /** Compile on first run (development) */
 if (config.development) compileHtml(...mustachePaths);
-

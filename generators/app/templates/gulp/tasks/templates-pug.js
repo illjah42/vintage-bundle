@@ -6,6 +6,7 @@ const prettify       = require('gulp-prettify');
 const pugIncludeGlob = require('pug-include-glob');
 const plumber        = require('gulp-plumber');
 const config         = require('../config');
+const runSequence    = require('run-sequence')
 
 /**
  * Default HTML task.
@@ -18,7 +19,7 @@ gulp.task('pug-compile', () => compileHtml('src/template/pages/*.pug', './www/')
  * Watch for changes in '.pug' files and compile them.
  */
 gulp.task('template-watch', () => {
-  gulp.watch('src/template/**/*.pug', ['pug-compile']);
+  gulp.watch('src/template/**/*.pug', runSequence('pug-compile', 'reload-browsers'));
 });
 
 /**

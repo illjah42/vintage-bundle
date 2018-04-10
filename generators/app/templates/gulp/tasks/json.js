@@ -18,7 +18,7 @@ gulp.task('json-compile', () => compileJSON('src/template/data/**/*.json', './ww
  * Watch for changes in '.json' files and compile them.
  */
 gulp.task('json-watch', () => {
-  gulp.watch('src/template/data/**/*.json', () => runSequence('json-compile', 'template-compile'));
+  gulp.watch('src/template/data/**/*.json', () => runSequence('json-compile', 'template-compile', 'reload-browsers'));
 });
 
 /**

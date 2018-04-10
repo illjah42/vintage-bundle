@@ -10,6 +10,7 @@ const gulpif       = require('gulp-if');
 const autoprefixer = require('autoprefixer');
 const mqpacker     = require('css-mqpacker');
 const config       = require('../config');
+const browserSync  = require('./livereload.js');
 
 /**
  * Default CSS task.
@@ -63,7 +64,8 @@ function compileCss(src, dest) {
       extname: '.css'
     })))
     .pipe(gulpif(config.development, sourcemaps.write()))
-    .pipe(gulp.dest(dest));
+    .pipe(gulp.dest(dest))
+    .pipe(gulpif(config.development, browserSync.stream()));
 }
 
 /**

@@ -1,11 +1,12 @@
 'use strict';
 
-const gulp           = require('gulp');
-const plumber        = require('gulp-plumber');
-const Webpack        = require('webpack');
-const webpackStream  = require('webpack-stream');
-const config         = require('../config');
-const webpackConfig  = config.webpackConfig;
+const gulp                 = require('gulp');
+const plumber              = require('gulp-plumber');
+const Webpack              = require('webpack');
+const webpackStream        = require('webpack-stream');
+const WebpackOnBuildPlugin = require('on-build-webpack');
+const config               = require('../config');
+const webpackConfig        = config.webpackConfig;
 
 /**
  * Only during development.
@@ -17,6 +18,13 @@ if (config.development) {
 
   // Generate sourcemaps
   webpackConfig.devtool = 'source-map';
+
+  // Init browsers reloading after bundling
+  webpackConfig.plugins.push(
+    new WebpackOnBuildPlugin(function(stats) {
+      gulp.start('reload-browsers');
+    })
+  )
 }
 
 /**
